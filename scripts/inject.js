@@ -415,6 +415,8 @@
   }
 
   async function createSidebar() {
+    // Prevent multiple sidebars
+    if (getSidebar()) return;
     injectSidebarStylesheet();
 
     const sidebar = document.createElement("div");
@@ -442,6 +444,7 @@
     if (sidebar && !sidebar.contains(event.target)) {
       sidebar.remove();
       document.removeEventListener("mousedown", handleClickOutside);
+      removeSidebarStylesheet(); // Ensure stylesheet is removed
     }
   }
 
@@ -449,6 +452,7 @@
     const sidebar = getSidebar();
     if (sidebar) {
       sidebar.remove();
+      document.removeEventListener("mousedown", handleClickOutside); // Remove event listener
       removeSidebarStylesheet();
     } else {
       createSidebar();
