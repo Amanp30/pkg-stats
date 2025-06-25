@@ -24,7 +24,7 @@
 }
 
 /* ===== Header Flex Layout ===== */
-.pkg-header {
+#pkg-stats-sidebar .pkg-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,28 +32,29 @@
 }
 
 /* ===== Header Title ===== */
-.pkg-header .title {
+#pkg-stats-sidebar .pkg-header .title {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
   line-height: 1.2;
+  color: #000 !important;
 }
 
-.pkg-header-left {
+#pkg-stats-sidebar .pkg-header-left {
   display: flex;
   align-items: center;
   gap: 1.4em;
 }
 
 /* ===== Right-Side Header Controls ===== */
-.pkg-header-right-div {
+#pkg-stats-sidebar .pkg-header-right-div {
   display: flex;
   align-items: center;
   gap: 1.4em;
 }
 
 /* ===== Select Styling ===== */
-select {
+#pkg-stats-sidebar select {
   padding: 0.75em 1em;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -64,13 +65,13 @@ select {
   transition: border 0.2s ease-in-out;
 }
 
-select:focus {
+#pkg-stats-sidebar select:focus {
   border-color: #666;
   background-color: #fff;
 }
 
 /* message box */
-.pkg-message-box {
+#pkg-stats-sidebar .pkg-message-box {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -90,11 +91,11 @@ select:focus {
   transition: box-shadow 0.3s ease;
 }
 
-.pkg-message-box:hover {
+#pkg-stats-sidebar .pkg-message-box:hover {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
 }
 
-.pkg-message-box p {
+#pkg-stats-sidebar .pkg-message-box p {
   flex: 1;
   margin: 0;
   font-size: 15px;
@@ -102,7 +103,7 @@ select:focus {
   color: #1f2937;
 }
 
-.pkg-track-btn {
+#pkg-stats-sidebar .pkg-track-btn {
   background-color: #3b82f6;
   color: #fff;
   padding: 10px 18px;
@@ -117,16 +118,16 @@ select:focus {
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.pkg-track-btn:hover {
+#pkg-stats-sidebar .pkg-track-btn:hover {
   background-color: #2563eb;
 }
 
-.pkg-track-btn:active {
+#pkg-stats-sidebar .pkg-track-btn:active {
   transform: scale(0.97);
 }
 
 /* table */
-.pkg-stats-table {
+#pkg-stats-sidebar .pkg-stats-table {
   width: 100%;
   table-layout: fixed; /* Prevent layout breaking from long text */
   border-collapse: collapse;
@@ -139,35 +140,35 @@ select:focus {
 }
 
 /* sorting table */
-.pkg-stats-table th.sortable {
+#pkg-stats-sidebar .pkg-stats-table th.sortable {
   cursor: pointer;
   user-select: none;
 }
 
-.pkg-stats-table th.sortable::after {
+#pkg-stats-table th.sortable::after {
   content: "⇅";
   font-size: 10px;
   margin-left: 4px;
   opacity: 0.4;
 }
 
-.pkg-stats-table th.sortable.sorted-asc::after {
+#pkg-stats-table th.sortable.sorted-asc::after {
   content: "↑";
   opacity: 1;
 }
 
-.pkg-stats-table th.sortable.sorted-desc::after {
+#pkg-stats-table th.sortable.sorted-desc::after {
   content: "↓";
   opacity: 1;
 }
 
 /* Header */
-.pkg-stats-table thead {
+#pkg-stats-sidebar .pkg-stats-table thead {
   background-color: #f8f9fa;
   text-transform: uppercase;
 }
 
-.pkg-stats-table th {
+#pkg-stats-sidebar .pkg-stats-table th {
   font-weight: 600;
   color: #333;
   padding: 12px 16px;
@@ -177,7 +178,7 @@ select:focus {
 }
 
 /* Body */
-.pkg-stats-table td {
+#pkg-stats-sidebar .pkg-stats-table td {
   padding: 12px 16px;
   text-align: left;
   border-bottom: 1px solid #eee;
@@ -188,13 +189,13 @@ select:focus {
 }
 
 /* Truncate long package names */
-.pkg-stats-table td:first-child {
+#pkg-stats-sidebar .pkg-stats-table td:first-child {
   max-width: 220px;
 }
 
 /* Delete column */
-.pkg-stats-table td:last-child,
-.pkg-stats-table th:last-child {
+#pkg-stats-sidebar .pkg-stats-table td:last-child,
+#pkg-stats-sidebar .pkg-stats-table th:last-child {
   text-align: center;
   width: 48px;
   min-width: 48px;
@@ -203,26 +204,26 @@ select:focus {
 
 /* Delete icon styling */
 /* Keep ellipsis for all cells except the last column (icon) */
-.pkg-stats-table td:not(:last-child) {
+#pkg-stats-sidebar .pkg-stats-table td:not(:last-child) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 /* Remove ellipsis behavior for the icon cell */
-.pkg-stats-table td:last-child {
+#pkg-stats-sidebar .pkg-stats-table td:last-child {
   white-space: normal;
   overflow: visible;
   text-overflow: unset;
 }
 
 /* Hover row effect */
-.pkg-stats-table tbody tr:hover {
+#pkg-stats-sidebar .pkg-stats-table tbody tr:hover {
   background-color: #f1f1f1;
 }
 
 /* Spinner loader */
-.pkg-stats-spinner {
+#pkg-stats-sidebar .pkg-stats-spinner {
   width: 40px;
   height: 40px;
   margin: 40px auto;
@@ -240,7 +241,7 @@ select:focus {
 }
 
 /* ===== Empty State Message Instructions ===== */
-.pkg-empty-message ul {
+#pkg-stats-sidebar .pkg-empty-message ul {
   margin-top: 12px;
   margin-bottom: 0;
   padding-left: 22px;
@@ -250,7 +251,7 @@ select:focus {
   list-style: disc inside;
 }
 
-.pkg-empty-message li {
+#pkg-stats-sidebar .pkg-empty-message li {
   margin-bottom: 6px;
   padding-left: 2px;
   font-size: 15px;
@@ -259,18 +260,18 @@ select:focus {
   transition: color 0.2s;
 }
 
-.pkg-empty-message li a {
+#pkg-stats-sidebar .pkg-empty-message li a {
   color: #2563eb;
   text-decoration: underline;
   transition: color 0.2s;
 }
 
-.pkg-empty-message li a:hover {
+#pkg-stats-sidebar .pkg-empty-message li a:hover {
   color: #1d4ed8;
   text-decoration: underline wavy;
 }
 
-.pkg-empty-message p:first-child {
+#pkg-stats-sidebar .pkg-empty-message p:first-child {
   font-size: 1.15rem;
   font-weight: 600;
   color: #1d4ed8;
