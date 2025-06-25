@@ -238,3 +238,44 @@ select:focus {
     transform: rotate(360deg);
   }
 }
+
+/* ===== Empty State Message Instructions ===== */
+.pkg-empty-message ul {
+  margin-top: 12px;
+  margin-bottom: 0;
+  padding-left: 22px;
+  color: #374151;
+  font-size: 15px;
+  line-height: 1.7;
+  list-style: disc inside;
+}
+
+.pkg-empty-message li {
+  margin-bottom: 6px;
+  padding-left: 2px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #374151;
+  transition: color 0.2s;
+}
+
+.pkg-empty-message li a {
+  color: #2563eb;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.pkg-empty-message li a:hover {
+  color: #1d4ed8;
+  text-decoration: underline wavy;
+}
+
+.pkg-empty-message p:first-child {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  margin-bottom: 8px;
+  margin-top: 0;
+  letter-spacing: 0.01em;
+  text-align: left;
+}

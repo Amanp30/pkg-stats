@@ -304,18 +304,9 @@
       deleteIcon.title = "Remove package";
       deleteIcon.addEventListener("click", async () => {
         await removePackageFromTracked(pkg.packageName);
-        row.remove();
-
-        const updatedPackages = await getTrackedPackages();
-
-        if (updatedPackages.length === 0) {
-          const table = row.closest("table");
-          const container = getSidebar();
-          if (table) table.remove();
-
-          const emptyMsg = renderEmptyStateMessage();
-          container.appendChild(emptyMsg);
-        }
+        const container = getSidebar();
+        const service = (await chromeGet("sync", DEFAULT_SERVICE_KEY)) || "npm";
+        await refreshStatsTable(service, container);
       });
 
       deleteTd.appendChild(deleteIcon);
@@ -335,22 +326,30 @@
     const msg = document.createElement("p");
     msg.textContent = "No packages are being tracked yet.";
 
-    const subMsg = document.createElement("p");
-    subMsg.textContent = "Watch the video below to get started:";
-
-    const iframe = document.createElement("iframe");
-    iframe.width = "100%";
-    iframe.height = "350";
-    iframe.src = "https://www.youtube.com/embed/_v9FpRBCBRM"; // Replace with your actual video ID
-    iframe.title = "Getting Started with Package Stats";
-    iframe.frameBorder = "0";
-    iframe.allow =
-      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-    iframe.allowFullscreen = true;
-
     messageDiv.appendChild(msg);
-    messageDiv.appendChild(subMsg);
-    messageDiv.appendChild(iframe);
+
+    // Only show instructions if NOT on a package page
+    if (!isPackagePage()) {
+      const ul = document.createElement("ul");
+      ul.style.margin = "12px 0 0 18px";
+      ul.style.padding = "0";
+      ul.style.listStyle = "disc inside";
+
+      const li1 = document.createElement("li");
+      li1.innerHTML =
+        'Go to any package page (for example: <a href="https://www.npmjs.com/package/ap-ssg" target="_blank" rel="noopener">https://www.npmjs.com/package/ap-ssg</a>)';
+      ul.appendChild(li1);
+
+      const li2 = document.createElement("li");
+      li2.textContent = "Click the extension again to open the sidebar.";
+      ul.appendChild(li2);
+
+      const li3 = document.createElement("li");
+      li3.textContent = "Click the 'Track Now' button to add the package.";
+      ul.appendChild(li3);
+
+      messageDiv.appendChild(ul);
+    }
 
     return messageDiv;
   }
@@ -361,8 +360,27 @@
   ) {
     // Clear previous UI (table or message)
     container
-      .querySelectorAll(".pkg-stats-table, .pkg-empty-message")
+      .querySelectorAll(
+        ".pkg-stats-table, .pkg-empty-message, .pkg-message-box"
+      )
       .forEach((el) => el.remove());
+
+    // Always show 'Track Now' message box below header if on package page and current package is not tracked
+    let msgBox = null;
+    if (isPackagePage()) {
+      const currentPkg = getCurrentPackageName();
+      if (currentPkg && !(await isPackageAlreadyInStorage(currentPkg))) {
+        msgBox = await getMessageBox(service, () =>
+          refreshStatsTable(service, container)
+        );
+      }
+    }
+
+    // Insert message box after header section
+    const header = container.querySelector("#header-section");
+    if (msgBox && header) {
+      header.insertAdjacentElement("afterend", msgBox);
+    }
 
     const loader = document.createElement("div");
     loader.className = "pkg-stats-spinner";
