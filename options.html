@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pkg Stats Settings</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #111827;
+        color: #f9fafb;
+        padding: 30px;
+        max-width: 600px;
+        margin: auto;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #facc15;
+        margin-bottom: 20px;
+      }
+
+      section {
+        margin-bottom: 40px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+
+      button {
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      button:hover {
+        background-color: #1d4ed8;
+      }
+
+      input[type="file"] {
+        color: white;
+      }
+
+      .note {
+        font-size: 13px;
+        color: #9ca3af;
+        margin-bottom: 12px;
+      }
+
+      .checkbox-group label {
+        margin-bottom: 8px;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .count {
+        font-weight: bold;
+        margin-left: 8px;
+        color: #22c55e;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pkg Stats Settings</h1>
+
+    <section>
+      <label>📤 Export Tracked Packages</label>
+      <p class="note">
+        Download your current tracked package list as a text file.
+      </p>
+      <button id="export-btn">Export List</button>
+    </section>
+
+    <section>
+      <label>📥 Import Tracked Packages</label>
+      <p class="note">
+        Upload a .txt file containing one package name per line.
+      </p>
+      <input type="file" id="import-file" accept=".txt" />
+      <button id="import-btn">Import List</button>
+      <div
+        id="import-status"
+        style="margin-top: 10px; font-size: 13px; color: #22c55e"
+      ></div>
+    </section>
+
+    <section>
+      <label>🧹 Clear All Tracked Packages</label>
+      <p class="note">This will remove all tracked packages from storage.</p>
+      <div class="btn-row">
+        <button id="clear-btn">Clear All</button>
+        <span class="count" id="pkg-count">(0 packages)</span>
+      </div>
+    </section>
+
+    <section class="column-settings">
+      <label for="col-daily" class="section-title"
+        >📊 Select Columns to Display</label
+      >
+      <p class="note">Choose which stats to show in the sidebar.</p>
+
+      <div class="checkbox-group">
+        <label for="col-daily">
+          <input type="checkbox" id="col-daily" checked />
+          Last Day Downloads
+        </label>
+
+        <label for="col-weekly">
+          <input type="checkbox" id="col-weekly" checked />
+          Weekly Downloads
+        </label>
+
+        <label for="col-monthly">
+          <input type="checkbox" id="col-monthly" checked />
+          Monthly Downloads
+        </label>
+
+        <label for="col-yearly">
+          <input type="checkbox" id="col-yearly" checked />
+          Yearly Downloads
+        </label>
+      </div>
+    </section>
+
+    <script src="options.js"></script>
+  </body>
+</html>

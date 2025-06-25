@@ -1,0 +1,240 @@
+/* ===== Sidebar Container ===== */
+#pkg-stats-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  z-index: 99999999999;
+  overflow-y: auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #111;
+}
+
+/* ===== Reset All Direct Children ===== */
+
+#pkg-stats-sidebar,
+#pkg-stats-sidebar * {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+/* ===== Header Flex Layout ===== */
+.pkg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+/* ===== Header Title ===== */
+.pkg-header .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pkg-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.4em;
+}
+
+/* ===== Right-Side Header Controls ===== */
+.pkg-header-right-div {
+  display: flex;
+  align-items: center;
+  gap: 1.4em;
+}
+
+/* ===== Select Styling ===== */
+select {
+  padding: 0.75em 1em;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  color: #333;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+select:focus {
+  border-color: #666;
+  background-color: #fff;
+}
+
+/* message box */
+.pkg-message-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-left: 5px solid #3b82f6;
+  border-radius: 12px;
+
+  padding: 16px 20px;
+  margin: 24px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+
+  font-family: "Segoe UI", "Inter", sans-serif;
+  color: #111827;
+  transition: box-shadow 0.3s ease;
+}
+
+.pkg-message-box:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+
+.pkg-message-box p {
+  flex: 1;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.pkg-track-btn {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 10px 18px;
+
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.pkg-track-btn:hover {
+  background-color: #2563eb;
+}
+
+.pkg-track-btn:active {
+  transform: scale(0.97);
+}
+
+/* table */
+.pkg-stats-table {
+  width: 100%;
+  table-layout: fixed; /* Prevent layout breaking from long text */
+  border-collapse: collapse;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 14px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* sorting table */
+.pkg-stats-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.pkg-stats-table th.sortable::after {
+  content: "⇅";
+  font-size: 10px;
+  margin-left: 4px;
+  opacity: 0.4;
+}
+
+.pkg-stats-table th.sortable.sorted-asc::after {
+  content: "↑";
+  opacity: 1;
+}
+
+.pkg-stats-table th.sortable.sorted-desc::after {
+  content: "↓";
+  opacity: 1;
+}
+
+/* Header */
+.pkg-stats-table thead {
+  background-color: #f8f9fa;
+  text-transform: uppercase;
+}
+
+.pkg-stats-table th {
+  font-weight: 600;
+  color: #333;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+/* Body */
+.pkg-stats-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Truncate long package names */
+.pkg-stats-table td:first-child {
+  max-width: 220px;
+}
+
+/* Delete column */
+.pkg-stats-table td:last-child,
+.pkg-stats-table th:last-child {
+  text-align: center;
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+}
+
+/* Delete icon styling */
+/* Keep ellipsis for all cells except the last column (icon) */
+.pkg-stats-table td:not(:last-child) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Remove ellipsis behavior for the icon cell */
+.pkg-stats-table td:last-child {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+/* Hover row effect */
+.pkg-stats-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Spinner loader */
+.pkg-stats-spinner {
+  width: 40px;
+  height: 40px;
+  margin: 40px auto;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Animation Keyframes */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

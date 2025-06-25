@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Pkg Stats",
+  "version": "1.0",
+  "description": "Track npm package downloads across any website",
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": ["<all_urls>", "https://www.npmjs.com/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["sidebar.css", "assets/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_title": "Pkg Stats",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
